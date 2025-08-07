@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="DbSchema Sample Model" id="Project_5b8" database="H2" >
+	<schema name="PUBLIC" catalogname="Northwind-extended" >
+		<table name="customers" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="company" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="last_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="first_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="email_address" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="job_title" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="business_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="home_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="mobile_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="fax_number" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="address" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="city" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="state_province" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="zip_postal_code" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="country_region" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="web_page" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="notes" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="attachments" type="blob" length="2147483647" decimal="0" jt="2004" />
+			<index name="CONSTRAINT_6" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="employees" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="company" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="last_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="first_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="email_address" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="job_title" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="business_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="home_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="mobile_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="fax_number" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="address" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="city" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="state_province" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="zip_postal_code" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="country_region" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="web_page" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="notes" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="attachments" type="blob" length="2147483647" decimal="0" jt="2004" />
+			<index name="CONSTRAINT_9" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="inventory_transaction_types" >
+			<column name="id" type="tinyint" length="3" decimal="0" jt="-6" mandatory="y" />
+			<column name="type_name" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_E" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="inventory_transactions" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="transaction_type" type="tinyint" length="3" decimal="0" jt="-6" mandatory="y" />
+			<column name="transaction_created_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="transaction_modified_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="product_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="quantity" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="purchase_order_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="customer_order_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="comments" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_D" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_inventory_transactions__inventory_transaction_types_INDEX_D" unique="NORMAL" >
+				<column name="transaction_type" />
+			</index>
+			<index name="fk_inventory_transactions__orders_INDEX_D" unique="NORMAL" >
+				<column name="customer_order_id" />
+			</index>
+			<index name="fk_inventory_transactions__products_INDEX_D" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<index name="fk_inventory_transactions__purchase_orders_INDEX_D" unique="NORMAL" >
+				<column name="purchase_order_id" />
+			</index>
+			<fk name="fk_inventory_transactions__inventory_transaction_types" to_schema="Northwind-extended.PUBLIC" to_table="inventory_transaction_types" delete_action="restrict" update_action="restrict" >
+				<fk_column name="transaction_type" pk="id" />
+			</fk>
+			<fk name="fk_inventory_transactions__orders" to_schema="Northwind-extended.PUBLIC" to_table="orders" delete_action="restrict" update_action="restrict" >
+				<fk_column name="customer_order_id" pk="id" />
+			</fk>
+			<fk name="fk_inventory_transactions__products" to_schema="Northwind-extended.PUBLIC" to_table="products" delete_action="restrict" update_action="restrict" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="fk_inventory_transactions__purchase_orders" to_schema="Northwind-extended.PUBLIC" to_table="purchase_orders" delete_action="restrict" update_action="restrict" >
+				<fk_column name="purchase_order_id" pk="id" />
+			</fk>
+		</table>
+		<table name="invoices" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="order_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="invoice_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="due_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="tax" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="shipping" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="amount_due" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<index name="CONSTRAINT_2" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_invoices__orders_INDEX_2" unique="NORMAL" >
+				<column name="order_id" />
+			</index>
+			<fk name="fk_invoices__orders" to_schema="Northwind-extended.PUBLIC" to_table="orders" delete_action="restrict" update_action="restrict" >
+				<fk_column name="order_id" pk="id" />
+			</fk>
+		</table>
+		<table name="order_details" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="order_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="product_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="quantity" type="decimal" length="18" decimal="4" jt="3" mandatory="y" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="unit_price" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="discount" type="double" length="17" decimal="0" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="status_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="date_allocated" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="purchase_order_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="inventory_id" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_5" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_order_details__order_details_status_INDEX_5" unique="NORMAL" >
+				<column name="status_id" />
+			</index>
+			<index name="fk_order_details__orders_INDEX_5" unique="NORMAL" >
+				<column name="order_id" />
+			</index>
+			<index name="fk_order_details__products_INDEX_5" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<fk name="fk_order_details__order_details_status" to_schema="Northwind-extended.PUBLIC" to_table="order_details_status" delete_action="restrict" update_action="restrict" >
+				<fk_column name="status_id" pk="id" />
+			</fk>
+			<fk name="fk_order_details__orders" to_schema="Northwind-extended.PUBLIC" to_table="orders" delete_action="restrict" update_action="restrict" >
+				<fk_column name="order_id" pk="id" />
+			</fk>
+			<fk name="fk_order_details__products" to_schema="Northwind-extended.PUBLIC" to_table="products" delete_action="restrict" update_action="restrict" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+		</table>
+		<table name="order_details_status" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="status_name" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_7D" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="orders" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="employee_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="customer_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="order_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="shipped_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="shipper_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ship_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="ship_address" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="ship_city" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="ship_state_province" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="ship_zip_postal_code" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="ship_country_region" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="shipping_fee" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="taxes" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="payment_type" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="paid_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="notes" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="tax_rate" type="double" length="17" decimal="0" jt="8" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="tax_status_id" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="status_id" type="tinyint" length="3" decimal="0" jt="-6" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="CONSTRAINT_C" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_orders__customers_INDEX_C" unique="NORMAL" >
+				<column name="customer_id" />
+			</index>
+			<index name="fk_orders__employees_INDEX_C" unique="NORMAL" >
+				<column name="employee_id" />
+			</index>
+			<index name="fk_orders__orders_status_INDEX_C" unique="NORMAL" >
+				<column name="status_id" />
+			</index>
+			<index name="fk_orders__orders_tax_status_INDEX_C" unique="NORMAL" >
+				<column name="tax_status_id" />
+			</index>
+			<index name="fk_orders__shippers_INDEX_C" unique="NORMAL" >
+				<column name="shipper_id" />
+			</index>
+			<fk name="fk_orders__customers" to_schema="Northwind-extended.PUBLIC" to_table="customers" delete_action="restrict" update_action="restrict" >
+				<fk_column name="customer_id" pk="id" />
+			</fk>
+			<fk name="fk_orders__employees" to_schema="Northwind-extended.PUBLIC" to_table="employees" delete_action="restrict" update_action="restrict" >
+				<fk_column name="employee_id" pk="id" />
+			</fk>
+			<fk name="fk_orders__orders_status" to_schema="Northwind-extended.PUBLIC" to_table="orders_status" delete_action="restrict" update_action="restrict" >
+				<fk_column name="status_id" pk="id" />
+			</fk>
+			<fk name="fk_orders__orders_tax_status" to_schema="Northwind-extended.PUBLIC" to_table="orders_tax_status" delete_action="restrict" update_action="restrict" >
+				<fk_column name="tax_status_id" pk="id" />
+			</fk>
+			<fk name="fk_orders__shippers" to_schema="Northwind-extended.PUBLIC" to_table="shippers" delete_action="restrict" update_action="restrict" >
+				<fk_column name="shipper_id" pk="id" />
+			</fk>
+		</table>
+		<table name="orders_status" >
+			<column name="id" type="tinyint" length="3" decimal="0" jt="-6" mandatory="y" />
+			<column name="status_name" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_7" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="orders_tax_status" >
+			<column name="id" type="tinyint" length="3" decimal="0" jt="-6" mandatory="y" />
+			<column name="tax_status_name" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_8" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="products" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="supplier_ids" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="product_code" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="product_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="description" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="standard_cost" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="list_price" type="decimal" length="19" decimal="4" jt="3" mandatory="y" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="reorder_level" type="integer" length="10" decimal="0" jt="4" />
+			<column name="target_level" type="integer" length="10" decimal="0" jt="4" />
+			<column name="quantity_per_unit" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="discontinued" type="tinyint" length="3" decimal="0" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="minimum_reorder_quantity" type="integer" length="10" decimal="0" jt="4" />
+			<column name="category" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="attachments" type="blob" length="2147483647" decimal="0" jt="2004" />
+			<index name="CONSTRAINT_C4" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="purchase_order_details" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="purchase_order_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="product_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="quantity" type="decimal" length="18" decimal="4" jt="3" mandatory="y" />
+			<column name="unit_cost" type="decimal" length="19" decimal="4" jt="3" mandatory="y" />
+			<column name="date_received" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="posted_to_inventory" type="tinyint" length="3" decimal="0" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="inventory_id" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_A" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_purchase_order_details__inventory_transactions_INDEX_A" unique="NORMAL" >
+				<column name="inventory_id" />
+			</index>
+			<index name="fk_purchase_order_details__products_INDEX_A" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<index name="fk_purchase_order_details__purchase_orders_INDEX_A" unique="NORMAL" >
+				<column name="purchase_order_id" />
+			</index>
+			<fk name="fk_purchase_order_details__inventory_transactions" to_schema="Northwind-extended.PUBLIC" to_table="inventory_transactions" delete_action="restrict" update_action="restrict" >
+				<fk_column name="inventory_id" pk="id" />
+			</fk>
+			<fk name="fk_purchase_order_details__products" to_schema="Northwind-extended.PUBLIC" to_table="products" delete_action="restrict" update_action="restrict" >
+				<fk_column name="product_id" pk="id" />
+			</fk>
+			<fk name="fk_purchase_order_details__purchase_orders" to_schema="Northwind-extended.PUBLIC" to_table="purchase_orders" delete_action="restrict" update_action="restrict" >
+				<fk_column name="purchase_order_id" pk="id" />
+			</fk>
+		</table>
+		<table name="purchase_order_status" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="status" type="varchar" length="50" decimal="0" jt="12" />
+			<index name="CONSTRAINT_72" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="purchase_orders" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="supplier_id" type="integer" length="10" decimal="0" jt="4" />
+			<column name="created_by" type="integer" length="10" decimal="0" jt="4" />
+			<column name="submitted_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="creation_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="status_id" type="integer" length="10" decimal="0" jt="4" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="expected_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="shipping_fee" type="decimal" length="19" decimal="4" jt="3" mandatory="y" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="taxes" type="decimal" length="19" decimal="4" jt="3" mandatory="y" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="payment_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="payment_amount" type="decimal" length="19" decimal="4" jt="3" >
+				<defo><![CDATA['0.0000']]></defo>
+			</column>
+			<column name="payment_method" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="notes" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="approved_by" type="integer" length="10" decimal="0" jt="4" />
+			<column name="approved_date" type="timestamp" length="26" decimal="6" jt="93" />
+			<column name="submitted_by" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_C3" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="fk_purchase_orders__employees_INDEX_C" unique="NORMAL" >
+				<column name="created_by" />
+			</index>
+			<index name="fk_purchase_orders__purchase_order_status_INDEX_C" unique="NORMAL" >
+				<column name="status_id" />
+			</index>
+			<index name="fk_purchase_orders__suppliers_INDEX_C" unique="NORMAL" >
+				<column name="supplier_id" />
+			</index>
+			<fk name="fk_purchase_orders__employees" to_schema="Northwind-extended.PUBLIC" to_table="employees" delete_action="restrict" update_action="restrict" >
+				<fk_column name="created_by" pk="id" />
+			</fk>
+			<fk name="fk_purchase_orders__purchase_order_status" to_schema="Northwind-extended.PUBLIC" to_table="purchase_order_status" delete_action="restrict" update_action="restrict" >
+				<fk_column name="status_id" pk="id" />
+			</fk>
+			<fk name="fk_purchase_orders__suppliers" to_schema="Northwind-extended.PUBLIC" to_table="suppliers" delete_action="restrict" update_action="restrict" >
+				<fk_column name="supplier_id" pk="id" />
+			</fk>
+		</table>
+		<table name="shippers" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="company" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="last_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="first_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="email_address" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="job_title" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="business_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="home_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="mobile_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="fax_number" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="address" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="city" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="state_province" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="zip_postal_code" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="country_region" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="web_page" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="notes" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="attachments" type="blob" length="2147483647" decimal="0" jt="2004" />
+			<index name="CONSTRAINT_E1" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="strings" >
+			<column name="string_id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="string_data" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_8F" unique="PRIMARY_KEY" >
+				<column name="string_id" />
+			</index>
+		</table>
+		<table name="suppliers" >
+			<column name="id" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="company" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="last_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="first_name" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="email_address" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="job_title" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="business_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="home_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="mobile_phone" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="fax_number" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="address" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="city" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="state_province" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="zip_postal_code" type="varchar" length="15" decimal="0" jt="12" />
+			<column name="country_region" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="web_page" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="notes" type="varchar" length="250" decimal="0" jt="12" />
+			<column name="attachments" type="blob" length="2147483647" decimal="0" jt="2004" />
+			<index name="CONSTRAINT_F" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+	</schema>
+	<connector name="SampleDB" database="H2" driver_class="org.h2.Driver" driver_jar="h2-1.4.210.jar" driver_desc="File" host="localhost" port="9092" instance="~/.DbSchema/samples/Northwind" />
+	<layout name="Default Layout" id="Layout_232d" show_relation="name" >
+		<entity schema="Northwind-extended.PUBLIC" name="customers" color="BED3F4" x="1664" y="976" />
+		<entity schema="Northwind-extended.PUBLIC" name="employees" color="C7F4BE" x="880" y="656" />
+		<entity schema="Northwind-extended.PUBLIC" name="inventory_transaction_types" color="C7F4BE" x="48" y="544" />
+		<entity schema="Northwind-extended.PUBLIC" name="inventory_transactions" color="C7F4BE" x="336" y="256" />
+		<entity schema="Northwind-extended.PUBLIC" name="invoices" color="BED3F4" x="1200" y="976" />
+		<entity schema="Northwind-extended.PUBLIC" name="order_details" color="BED3F4" x="1664" y="512" />
+		<entity schema="Northwind-extended.PUBLIC" name="order_details_status" color="BED3F4" x="1920" y="512" />
+		<entity schema="Northwind-extended.PUBLIC" name="orders" color="BED3F4" x="1408" y="512" />
+		<entity schema="Northwind-extended.PUBLIC" name="orders_status" color="BED3F4" x="1408" y="976" />
+		<entity schema="Northwind-extended.PUBLIC" name="orders_tax_status" color="BED3F4" x="1168" y="800" />
+		<entity schema="Northwind-extended.PUBLIC" name="products" color="C7F4BE" x="336" y="544" />
+		<entity schema="Northwind-extended.PUBLIC" name="purchase_order_details" color="C7F4BE" x="880" y="256" />
+		<entity schema="Northwind-extended.PUBLIC" name="purchase_order_status" color="C7F4BE" x="400" y="80" />
+		<entity schema="Northwind-extended.PUBLIC" name="purchase_orders" color="C7F4BE" x="640" y="256" />
+		<entity schema="Northwind-extended.PUBLIC" name="shippers" color="BED3F4" x="1168" y="80" />
+		<entity schema="Northwind-extended.PUBLIC" name="strings" color="3986C1" x="48" y="1136" />
+		<entity schema="Northwind-extended.PUBLIC" name="suppliers" color="C7F4BE" x="640" y="656" />
+		<callout x="1408" y="400" pointer="Round" >
+			<comment><![CDATA[Double-click table headers, columns, or foreign keys to edit. 
+Create multiple layouts (diagrams) with the same or different tables. 
+Saving the model to file will also save the layouts.]]></comment>
+		</callout>
+		<group name="orders" color="ECF0F7" >
+			<entity schema="Northwind-extended.PUBLIC" name="orders" />
+			<entity schema="Northwind-extended.PUBLIC" name="order_details" />
+			<entity schema="Northwind-extended.PUBLIC" name="customers" />
+			<entity schema="Northwind-extended.PUBLIC" name="orders_status" />
+			<entity schema="Northwind-extended.PUBLIC" name="invoices" />
+			<entity schema="Northwind-extended.PUBLIC" name="orders_tax_status" />
+			<entity schema="Northwind-extended.PUBLIC" name="order_details_status" />
+			<entity schema="Northwind-extended.PUBLIC" name="shippers" />
+		</group>
+		<group name="inventory_transactions" color="EEF7EC" >
+			<entity schema="Northwind-extended.PUBLIC" name="inventory_transactions" />
+			<entity schema="Northwind-extended.PUBLIC" name="purchase_orders" />
+			<entity schema="Northwind-extended.PUBLIC" name="products" />
+			<entity schema="Northwind-extended.PUBLIC" name="purchase_order_details" />
+			<entity schema="Northwind-extended.PUBLIC" name="employees" />
+			<entity schema="Northwind-extended.PUBLIC" name="inventory_transaction_types" />
+			<entity schema="Northwind-extended.PUBLIC" name="suppliers" />
+			<entity schema="Northwind-extended.PUBLIC" name="purchase_order_status" />
+		</group>
+	</layout>
+	<layout name="Sample Layout with Tools" id="Layout_21a3" show_column_type="y" show_relation="name" >
+		<entity schema="Northwind-extended.PUBLIC" name="customers" color="BED3F4" x="2000" y="944" />
+		<entity schema="Northwind-extended.PUBLIC" name="employees" color="C7F4BE" x="992" y="624" />
+		<entity schema="Northwind-extended.PUBLIC" name="inventory_transaction_types" color="C7F4BE" x="48" y="512" />
+		<entity schema="Northwind-extended.PUBLIC" name="inventory_transactions" color="C7F4BE" x="336" y="224" />
+		<entity schema="Northwind-extended.PUBLIC" name="invoices" color="BED3F4" x="1376" y="944" />
+		<entity schema="Northwind-extended.PUBLIC" name="order_details" color="BED3F4" x="2000" y="480" />
+		<entity schema="Northwind-extended.PUBLIC" name="order_details_status" color="BED3F4" x="2288" y="480" />
+		<entity schema="Northwind-extended.PUBLIC" name="orders" color="BED3F4" x="1664" y="480" />
+		<entity schema="Northwind-extended.PUBLIC" name="orders_status" color="BED3F4" x="1664" y="944" />
+		<entity schema="Northwind-extended.PUBLIC" name="orders_tax_status" color="BED3F4" x="1360" y="768" />
+		<entity schema="Northwind-extended.PUBLIC" name="products" color="C7F4BE" x="336" y="512" />
+		<entity schema="Northwind-extended.PUBLIC" name="purchase_order_details" color="C7F4BE" x="992" y="224" />
+		<entity schema="Northwind-extended.PUBLIC" name="purchase_order_status" color="C7F4BE" x="448" y="48" />
+		<entity schema="Northwind-extended.PUBLIC" name="purchase_orders" color="C7F4BE" x="688" y="224" />
+		<entity schema="Northwind-extended.PUBLIC" name="shippers" color="BED3F4" x="1344" y="48" />
+		<entity schema="Northwind-extended.PUBLIC" name="strings" color="3986C1" x="48" y="1104" />
+		<entity schema="Northwind-extended.PUBLIC" name="suppliers" color="C7F4BE" x="672" y="624" />
+		<script name="Sample SQL Editor" id="Editor_1a3a" language="SQL" >
+			<string><![CDATA[SELECT id, employee_id, customer_id, order_date, shipped_date, shipper_id, ship_name, ship_address, ship_city, ship_state_province, 
+	ship_zip_postal_code, ship_country_region, shipping_fee, taxes, payment_type, paid_date, notes, tax_rate, tax_status_id, 
+	status_id
+FROM
+	orders s;]]></string>
+		</script>
+		<browser id="Browse_1a64" name="Sample Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="Northwind-extended.PUBLIC" entity="orders" x="20" y="20" width="400" height="300" >
+				<browse_table schema="Northwind-extended.PUBLIC" entity="inventory_transactions" fk="fk_inventory_transactions__orders" x="440" y="20" width="500" height="350" >
+					<browse_table schema="Northwind-extended.PUBLIC" entity="purchase_orders" fk="fk_inventory_transactions__purchase_orders" x="960" y="20" width="500" height="350" record_view="y" />
+				</browse_table>
+			</browse_table>
+		</browser>
+		<query id="Query_1fff" name="Sample Query Builder" >
+			<query_table schema="Northwind-extended.PUBLIC" name="orders" alias="o" x="48" y="48" >
+				<column name="id" />
+				<column name="employee_id" />
+				<column name="customer_id" />
+				<column name="order_date" />
+				<column name="shipped_date" />
+				<column name="shipper_id" />
+				<column name="ship_name" />
+				<column name="ship_address" />
+				<column name="ship_city" />
+				<column name="ship_state_province" />
+				<column name="ship_zip_postal_code" />
+				<column name="ship_country_region" />
+				<column name="shipping_fee" />
+				<column name="taxes" />
+				<column name="payment_type" />
+				<column name="paid_date" />
+				<column name="notes" />
+				<column name="tax_rate" />
+				<column name="tax_status_id" />
+				<column name="status_id" />
+				<query_table schema="Northwind-extended.PUBLIC" name="inventory_transactions" alias="it" x="272" y="48" fk="fk_inventory_transactions__orders" type="Inner Join" >
+					<column name="id" />
+					<column name="transaction_type" />
+					<column name="transaction_created_date" />
+					<column name="transaction_modified_date" />
+					<column name="product_id" />
+					<column name="quantity" />
+					<column name="purchase_order_id" />
+					<column name="customer_order_id" />
+					<column name="comments" />
+					<query_table schema="Northwind-extended.PUBLIC" name="purchase_orders" alias="po" x="560" y="48" fk="fk_inventory_transactions__purchase_orders" type="Inner Join" >
+						<column name="id" />
+						<column name="supplier_id" />
+						<column name="created_by" />
+						<column name="submitted_date" />
+						<column name="creation_date" />
+						<column name="status_id" />
+						<column name="expected_date" />
+						<column name="shipping_fee" />
+						<column name="taxes" />
+						<column name="payment_date" />
+						<column name="payment_amount" />
+						<column name="payment_method" />
+						<column name="notes" />
+						<column name="approved_by" />
+						<column name="approved_date" />
+						<column name="submitted_by" />
+					</query_table>
+				</query_table>
+			</query_table>
+		</query>
+		<form name="Sample Report" id="Report_1d64" template="Centered Page" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="sample" template="H3" pos="0,0,1,0,l,c" />
+				<tableview name="sample" template="Table" css="table table-striped table-bordered table-sm table-hover" pos="0,1,4,1,f,f" layout="{{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="id" type="4" />
+						<var name="employee_id" type="4" />
+						<var name="customer_id" type="4" />
+						<var name="order_date" type="93" />
+						<var name="shipped_date" type="93" />
+						<var name="shipper_id" type="4" />
+						<var name="ship_name" />
+						<var name="ship_address" />
+						<var name="ship_city" />
+						<var name="ship_state_province" />
+						<var name="ship_zip_postal_code" />
+						<var name="ship_country_region" />
+						<var name="shipping_fee" type="3" />
+						<var name="taxes" type="3" />
+						<var name="payment_type" />
+						<var name="paid_date" type="93" />
+						<var name="notes" />
+						<var name="tax_rate" type="8" />
+						<var name="tax_status_id" type="-6" />
+						<var name="status_id" type="-6" />
+						<script ><![CDATA[SELECT * FROM orders]]></script>
+					</form_script>
+					<cell type="label" name="id" pos="0,0,0,0,c,c" />
+					<cell type="label" name="employee_id" pos="1,0,1,0,c,c" />
+					<cell type="label" name="customer_id" pos="2,0,2,0,c,c" />
+					<cell type="label" name="order_date" pos="3,0,3,0,c,c" />
+					<cell type="label" name="shipped_date" pos="4,0,4,0,c,c" />
+					<cell type="label" name="shipper_id" pos="5,0,5,0,c,c" />
+					<cell type="label" name="ship_name" pos="6,0,6,0,c,c" />
+					<cell type="label" name="ship_address" pos="7,0,7,0,c,c" />
+					<cell type="label" name="ship_city" pos="8,0,8,0,c,c" />
+					<cell type="label" name="ship_state_province" pos="9,0,9,0,c,c" />
+					<cell type="label" name="ship_zip_postal_code" pos="10,0,10,0,c,c" />
+					<cell type="label" name="ship_country_region" pos="11,0,11,0,c,c" />
+					<cell type="label" name="shipping_fee" pos="12,0,12,0,c,c" />
+					<cell type="label" name="taxes" pos="13,0,13,0,c,c" />
+					<cell type="label" name="payment_type" pos="14,0,14,0,c,c" />
+					<cell type="label" name="paid_date" pos="15,0,15,0,c,c" />
+					<cell type="label" name="notes" pos="16,0,16,0,c,c" />
+					<cell type="label" name="tax_rate" pos="17,0,17,0,c,c" />
+					<cell type="label" name="tax_status_id" pos="18,0,18,0,c,c" />
+					<cell type="label" name="status_id" pos="19,0,19,0,c,c" />
+					<cell type="label" name="${id}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${employee_id}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${customer_id}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${order_date}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${shipped_date}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="label" name="${shipper_id}" template="Plain" pos="5,1,5,1,l,c" />
+					<cell type="label" name="${ship_name}" template="Plain" pos="6,1,6,1,l,c" />
+					<cell type="label" name="${ship_address}" template="Plain" pos="7,1,7,1,l,c" />
+					<cell type="label" name="${ship_city}" template="Plain" pos="8,1,8,1,l,c" />
+					<cell type="label" name="${ship_state_province}" template="Plain" pos="9,1,9,1,l,c" />
+					<cell type="label" name="${ship_zip_postal_code}" template="Plain" pos="10,1,10,1,l,c" />
+					<cell type="label" name="${ship_country_region}" template="Plain" pos="11,1,11,1,l,c" />
+					<cell type="label" name="${shipping_fee}" template="Plain" pos="12,1,12,1,l,c" />
+					<cell type="label" name="${taxes}" template="Plain" pos="13,1,13,1,l,c" />
+					<cell type="label" name="${payment_type}" template="Plain" pos="14,1,14,1,l,c" />
+					<cell type="label" name="${paid_date}" template="Plain" pos="15,1,15,1,l,c" />
+					<cell type="label" name="${notes}" template="Plain" pos="16,1,16,1,l,c" />
+					<cell type="label" name="${tax_rate}" template="Plain" pos="17,1,17,1,l,c" />
+					<cell type="label" name="${tax_status_id}" template="Plain" pos="18,1,18,1,l,c" />
+					<cell type="label" name="${status_id}" template="Plain" pos="19,1,19,1,l,c" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,2,0,2,l,c" glyph="FA-ANGLE_DOUBLE_LEFT" ref_id="Report_1d64" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,2,1,2,l,c" glyph="FA-ANGLE_LEFT" ref_id="Report_1d64" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,2,2,2,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,2,3,2,l,c" glyph="FA-ANGLE_RIGHT" ref_id="Report_1d64" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>

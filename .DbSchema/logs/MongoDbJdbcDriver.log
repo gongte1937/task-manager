@@ -1,0 +1,12 @@
+July 29, 2022 10:55:13 AM com.wisecoders.dbschema.mongodb.JdbcDriver connect
+INFO: Connect URL: mongodb://localhost/mongodb
+July 29, 2022 10:55:13 AM com.wisecoders.dbschema.mongodb.JdbcDriver connect
+INFO: MongoClient URL: mongodb://localhost/mongodb
+July 29, 2022 10:55:14 AM com.wisecoders.dbschema.mongodb.wrappers.WrappedMongoClient pingServer
+INFO: Connected successfully to server.
+July 29, 2022 11:17:09 AM com.wisecoders.dbschema.mongodb.JdbcDriver connect
+INFO: Connect URL: mongodb://localhost/mongodb
+July 29, 2022 11:17:10 AM com.wisecoders.dbschema.mongodb.JdbcDriver connect
+INFO: MongoClient URL: mongodb://localhost/mongodb
+July 29, 2022 11:17:10 AM com.wisecoders.dbschema.mongodb.wrappers.WrappedMongoClient pingServer
+INFO: Connected successfully to server.

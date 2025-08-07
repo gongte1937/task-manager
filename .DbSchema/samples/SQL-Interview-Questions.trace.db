@@ -1,0 +1,111 @@
+2021-02-17 09:01:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "customer" nicht gefunden
+Table "customer" not found; SQL statement:
+ALTER TABLE "order" ADD CONSTRAINT fk_order_customer FOREIGN KEY ( customerid ) REFERENCES customer( id ) ON DELETE NO ACTION ON UPDATE NO ACTION [42102-200]
+2021-02-17 09:01:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLFeatureNotSupportedException: Dieses Feature wird nicht unterstützt: "getFunctions"
+Feature not supported: "getFunctions" [50100-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:507)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:269)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:398)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getFunctions(JdbcDatabaseMetaData.java:3273)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.ImporterUtils.listFunctionsUsingDriver(ImporterUtils.java:149)
+	at com.wisecoders.dbs.rdbms.Rdbms.listFunctionNames(Rdbms.java:432)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.StructureImporter.importSchemaStructure(StructureImporter.java:54)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.StructureImporter.<init>(StructureImporter.java:21)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxImportStructureTask$1.<init>(FxImportStructureTask.java:40)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxImportStructureTask.call(FxImportStructureTask.java:40)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxImportStructureTask.call(FxImportStructureTask.java:14)
+	at javafx.concurrent.Task$TaskCallable.call(Task.java:1425)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-02-17 09:01:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "triggers" nicht gefunden
+Table "triggers" not found; SQL statement:
+SELECT trigger_name FROM INFORMATION_SCHEMA.triggers WHERE trigger_schema='PUBLIC' [42102-200]
+2021-02-17 09:01:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "sequences" nicht gefunden
+Table "sequences" not found; SQL statement:
+SELECT sequence_name, current_value+1 FROM INFORMATION_SCHEMA.sequences WHERE sequence_schema='PUBLIC' [42102-200]
+2021-02-17 09:01:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "constraints" nicht gefunden
+Table "constraints" not found; SQL statement:
+SELECT table_name, constraint_name, check_expression FROM INFORMATION_SCHEMA.constraints WHERE check_expression IS NOT NULL AND constraint_schema='PUBLIC' [42102-200]
+2021-02-17 09:02:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLFeatureNotSupportedException: Dieses Feature wird nicht unterstützt: "getFunctions"
+Feature not supported: "getFunctions" [50100-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:507)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:269)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:398)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getFunctions(JdbcDatabaseMetaData.java:3273)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.ImporterUtils.listFunctionsUsingDriver(ImporterUtils.java:149)
+	at com.wisecoders.dbs.rdbms.Rdbms.listFunctionNames(Rdbms.java:432)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.StructureImporter.importSchemaStructure(StructureImporter.java:54)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.StructureImporter.<init>(StructureImporter.java:21)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxImportStructureTask$1.<init>(FxImportStructureTask.java:40)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxImportStructureTask.call(FxImportStructureTask.java:40)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxImportStructureTask.call(FxImportStructureTask.java:14)
+	at javafx.concurrent.Task$TaskCallable.call(Task.java:1425)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-02-17 09:02:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "triggers" nicht gefunden
+Table "triggers" not found; SQL statement:
+SELECT trigger_name FROM INFORMATION_SCHEMA.triggers WHERE trigger_schema='PUBLIC' [42102-200]
+2021-02-17 09:02:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "sequences" nicht gefunden
+Table "sequences" not found; SQL statement:
+SELECT sequence_name, current_value+1 FROM INFORMATION_SCHEMA.sequences WHERE sequence_schema='PUBLIC' [42102-200]
+2021-02-17 09:02:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "constraints" nicht gefunden
+Table "constraints" not found; SQL statement:
+SELECT table_name, constraint_name, check_expression FROM INFORMATION_SCHEMA.constraints WHERE check_expression IS NOT NULL AND constraint_schema='PUBLIC' [42102-200]
+2021-02-17 09:03:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLFeatureNotSupportedException: Dieses Feature wird nicht unterstützt: "getFunctions"
+Feature not supported: "getFunctions" [50100-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:507)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:269)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:398)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getFunctions(JdbcDatabaseMetaData.java:3273)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.ImporterUtils.listFunctionsUsingDriver(ImporterUtils.java:149)
+	at com.wisecoders.dbs.rdbms.Rdbms.listFunctionNames(Rdbms.java:432)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.StructureImporter.importSchemaStructure(StructureImporter.java:54)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.model.StructureImporter.<init>(StructureImporter.java:21)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxSynchronizationTask.call(FxSynchronizationTask.java:96)
+	at com.wisecoders.dbs.rdbms.reverseEngineer.fx.FxSynchronizationTask.call(FxSynchronizationTask.java:35)
+	at javafx.concurrent.Task$TaskCallable.call(Task.java:1425)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-02-17 09:03:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "triggers" nicht gefunden
+Table "triggers" not found; SQL statement:
+SELECT trigger_name FROM INFORMATION_SCHEMA.triggers WHERE trigger_schema='PUBLIC' [42102-200]
+2021-02-17 09:03:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "sequences" nicht gefunden
+Table "sequences" not found; SQL statement:
+SELECT sequence_name, current_value+1 FROM INFORMATION_SCHEMA.sequences WHERE sequence_schema='PUBLIC' [42102-200]
+2021-02-17 09:03:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "constraints" nicht gefunden
+Table "constraints" not found; SQL statement:
+SELECT table_name, constraint_name, check_expression FROM INFORMATION_SCHEMA.constraints WHERE check_expression IS NOT NULL AND constraint_schema='PUBLIC' [42102-200]
