@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Task, CreateTaskDto, UpdateTaskDto } from '../types';
+import { Task, CreateTaskDto, UpdateTaskDto } from '@task-manager/shared-types';
 
 // Get API base URL, use default if not configured
 const API_BASE_URL =

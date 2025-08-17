@@ -1,6 +1,6 @@
 'use client';
 
-import { Task } from '../types';
+import { Task } from '@task-manager/shared-types';
 import { useUpdateTaskMutation, useDeleteTaskMutation } from '../api/taskApi';
 
 interface TaskItemProps {

@@ -8,9 +8,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { User } from '../users/user.entity';
+import type { Task as TaskModel } from '@task-manager/shared-types';
 
 @Entity('tasks')
-export class Task {
+export class Task implements TaskModel {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
