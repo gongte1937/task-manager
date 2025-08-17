@@ -40,6 +40,40 @@ apps/frontend/web
 ├── styles/ # 全局样式、Tailwind 配置
 └── public/ # 静态资源
 
+## 后端推荐结构
+
+apps/backend/api
+├── src/
+│ ├── main.ts # 应用启动入口
+│ ├── app.module.ts # 根模块
+│ ├── config/ # 配置模块（env、数据库连接等）
+│ ├── database/ # TypeORM 配置、数据库初始化
+│ ├── common/ # 通用模块（拦截器、异常过滤器、守卫）
+│ │ ├── decorators/ # 统一装饰器（如 @CurrentUser）
+│ │ ├── filters/ # 异常过滤器
+│ │ ├── guards/ # 鉴权守卫
+│ │ ├── interceptors/ # 响应/日志拦截器
+│ │ └── middleware/ # 中间件
+│ ├── auth/ # 认证模块（JWT、注册登录）
+│ │ ├── auth.controller.ts
+│ │ ├── auth.service.ts
+│ │ ├── jwt.strategy.ts
+│ │ ├── dto/
+│ │ └── guards/
+│ ├── users/ # 用户模块
+│ │ ├── users.controller.ts
+│ │ ├── users.service.ts
+│ │ ├── user.entity.ts
+│ │ └── dto/
+│ ├── tasks/ # 任务模块
+│ │ ├── tasks.controller.ts
+│ │ ├── tasks.service.ts
+│ │ ├── task.entity.ts
+│ │ └── dto/
+│ └── app.controller.ts # 根控制器（健康检查等）
+├── test/ # e2e 测试
+└── project.json
+
 ### 第一阶段：基础结构搭建
 
 **目标**：使用 Nx 建立 monorepo 并分别初始化前后端应用。
