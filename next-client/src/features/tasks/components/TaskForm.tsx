@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useCreateTaskMutation } from '../store/api/taskApi';
+import { useCreateTaskMutation } from '../api/taskApi';
+import { CreateTaskDto } from '../types';
 
 const taskSchema = z.object({
   title: z
@@ -32,7 +33,7 @@ export default function TaskForm() {
     resolver: zodResolver(taskSchema),
   });
 
-  const onSubmit = async (data: TaskFormData) => {
+  const onSubmit = async (data: CreateTaskDto) => {
     try {
       await createTask(data).unwrap();
       reset();

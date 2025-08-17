@@ -1,10 +1,7 @@
 'use client';
 
-import { Task } from '../types/task';
-import {
-  useUpdateTaskMutation,
-  useDeleteTaskMutation,
-} from '../store/api/taskApi';
+import { Task } from '../types';
+import { useUpdateTaskMutation, useDeleteTaskMutation } from '../api/taskApi';
 
 interface TaskItemProps {
   task: Task;

@@ -1,48 +1,22 @@
 'use client';
 
-import { useGetTasksQuery } from '../store/api/taskApi';
+import { useTasks } from '../hooks/useTasks';
 import TaskItem from './TaskItem';
-import LoadingSpinner from './LoadingSpinner';
-import { Task } from '../types/task';
-
-// Demo data for development
-const demoTasks: Task[] = [
-  {
-    id: '1',
-    title: 'Complete Frontend Development',
-    description:
-      'Implement the frontend interface and functionality for the task management app',
-    completed: false,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: '2',
-    title: 'Learn NestJS',
-    description:
-      'Master the core concepts and best practices of the NestJS framework',
-    completed: true,
-    createdAt: new Date(Date.now() - 86400000).toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: '3',
-    title: 'Deploy Project',
-    description: 'Deploy the application to production environment',
-    completed: false,
-    createdAt: new Date(Date.now() - 172800000).toISOString(),
-    updatedAt: new Date(Date.now() - 172800000).toISOString(),
-  },
-];
+import LoadingSpinner from '../../../shared/components/LoadingSpinner';
 
 export default function TaskList() {
-  const { data: tasks, isLoading, error, refetch } = useGetTasksQuery();
+  const {
+    pendingTasks,
+    completedTasks,
+    isLoading,
+    error,
+    refetch,
+    isDemo,
+    pendingCount,
+    completedCount,
+  } = useTasks();
 
-  // In development environment, use demo data if no backend data
-  const displayTasks = tasks || demoTasks;
-  const isDemo = !tasks;
-
-  if (isLoading && !isDemo) {
+  if (isLoading) {
     return (
       <div className="py-12">
         <LoadingSpinner size="lg" />
@@ -50,7 +24,7 @@ export default function TaskList() {
     );
   }
 
-  if (error && !isDemo) {
+  if (error) {
     return (
       <div className="text-center py-12">
         <div className="text-red-600 mb-4">
@@ -82,7 +56,9 @@ export default function TaskList() {
     );
   }
 
-  if (!displayTasks || displayTasks.length === 0) {
+  const hasNoTasks = pendingCount === 0 && completedCount === 0;
+
+  if (hasNoTasks) {
     return (
       <div className="text-center py-12">
         <div className="text-gray-400 mb-4">
@@ -108,10 +84,10 @@ export default function TaskList() {
     );
   }
 
-  // Show demo data notice
-  if (isDemo) {
-    return (
-      <div className="space-y-6">
+  return (
+    <div className="space-y-6">
+      {/* Demo data notice */}
+      {isDemo && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <div className="flex items-center">
             <svg
@@ -133,27 +109,14 @@ export default function TaskList() {
             </p>
           </div>
         </div>
+      )}
 
-        {renderTaskGroups(displayTasks)}
-      </div>
-    );
-  }
-
-  return renderTaskGroups(displayTasks);
-}
-
-function renderTaskGroups(tasks: Task[]) {
-  const completedTasks = tasks.filter((task) => task.completed);
-  const pendingTasks = tasks.filter((task) => !task.completed);
-
-  return (
-    <div className="space-y-6">
       {/* Pending Tasks */}
-      {pendingTasks.length > 0 && (
+      {pendingCount > 0 && (
         <div>
           <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
             <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-            Pending Tasks ({pendingTasks.length})
+            Pending Tasks ({pendingCount})
           </h2>
           <div className="space-y-3">
             {pendingTasks.map((task) => (
@@ -164,11 +127,11 @@ function renderTaskGroups(tasks: Task[]) {
       )}
 
       {/* Completed Tasks */}
-      {completedTasks.length > 0 && (
+      {completedCount > 0 && (
         <div>
           <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
             <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-            Completed Tasks ({completedTasks.length})
+            Completed Tasks ({completedCount})
           </h2>
           <div className="space-y-3">
             {completedTasks.map((task) => (

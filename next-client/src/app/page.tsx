@@ -1,7 +1,7 @@
 'use client';
 
-import TaskForm from '../components/TaskForm';
-import TaskList from '../components/TaskList';
+import TaskForm from '../features/tasks/components/TaskForm';
+import TaskList from '../features/tasks/components/TaskList';
 
 export default function HomePage() {
   return (

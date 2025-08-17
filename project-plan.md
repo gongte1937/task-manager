@@ -9,7 +9,36 @@
 **目标**：
 构建一个基于 Nx monorepo 的全栈任务管理应用，使用 Next.js 作为前端框架，NestJS 作为后端框架，逐步扩展功能以覆盖常见的全栈开发实践，形成结构清晰、易于维护和部署的现代 Web 应用。
 
----
+## 前端推荐结构
+
+apps/frontend/web
+├── pages/ # Next.js 页面（可选：使用 app/）
+│ ├── index.tsx # 首页 - 任务列表
+│ ├── login.tsx # 登录页
+│ └── \_app.tsx # 全局入口（Provider、i18n、Layout）
+├── features/ # 功能模块化拆分（核心）
+│ ├── auth/ # 登录注册相关
+│ │ ├── components/ # UI 组件（AuthForm, LoginPage）
+│ │ ├── api.ts # RTK Query API Slice
+│ │ ├── hooks.ts # auth 状态逻辑
+│ │ └── types.ts
+│ ├── tasks/ # 任务功能模块
+│ │ ├── components/ # UI 组件（TaskItem, TaskList, TaskForm）
+│ │ ├── api.ts # RTK Query API Slice
+│ │ ├── hooks.ts # 自定义 hooks
+│ │ └── types.ts
+├── shared/ # 通用组件和工具
+│ ├── components/ # Layout, Header, Button 等
+│ ├── hooks/ # useAuth, useTranslation 等
+│ ├── utils/ # 工具函数（如时间格式化）
+│ └── types/ # 通用类型定义
+├── locales/ # i18n 语言包
+│ ├── en.json
+│ └── zh.json
+├── store/ # Redux Store 配置
+│ └── index.ts
+├── styles/ # 全局样式、Tailwind 配置
+└── public/ # 静态资源
 
 ### 第一阶段：基础结构搭建
 

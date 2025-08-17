@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { taskApi } from '../../store/api/taskApi';
-import TaskItem from '../TaskItem';
+import { taskApi } from '../../features/tasks/api/taskApi';
+import TaskItem from '../../features/tasks/components/TaskItem';
 
 // Create test store
 const createTestStore = () => {
