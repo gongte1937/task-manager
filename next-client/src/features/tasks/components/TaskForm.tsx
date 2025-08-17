@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useCreateTaskMutation } from '../api/taskApi';
-import { CreateTaskDto } from '../types';
+import { CreateTaskDto } from '@task-manager/shared-types';
 
 const taskSchema = z.object({
   title: z

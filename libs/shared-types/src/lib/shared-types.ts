@@ -3,8 +3,8 @@ export interface Task {
   title: string;
   description?: string;
   completed: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 }
 
 export interface CreateTaskDto {
@@ -16,9 +16,4 @@ export interface UpdateTaskDto {
   title?: string;
   description?: string;
   completed?: boolean;
-}
-
-export interface TaskFilters {
-  completed?: boolean;
-  search?: string;
 }

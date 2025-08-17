@@ -12,9 +12,9 @@ describe('AppService', () => {
     service = app.get<AppService>(AppService);
   });
 
-  describe('getData', () => {
-    it('should return "Hello API"', () => {
-      expect(service.getData()).toEqual({ message: 'Hello API' });
+  describe('getHello', () => {
+    it('should return API running message', () => {
+      expect(service.getHello()).toBe('Task Manager API is running!');
     });
   });
 });

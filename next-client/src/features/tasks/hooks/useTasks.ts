@@ -1,6 +1,11 @@
 import { useMemo } from 'react';
 import { useGetTasksQuery } from '../api/taskApi';
-import { Task, TaskFilters } from '../types';
+import { Task } from '@task-manager/shared-types';
+
+export interface TaskFilters {
+  completed?: boolean;
+  search?: string;
+}
 
 // Demo data for development
 const demoTasks: Task[] = [
