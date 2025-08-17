@@ -10,6 +10,14 @@ export const taskApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
     credentials: 'include',
+    prepareHeaders: (headers) => {
+      // Get token from localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ['Task'],
   endpoints: (builder) => ({
